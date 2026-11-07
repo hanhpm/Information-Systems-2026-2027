@@ -2,10 +2,9 @@
 USE employees;
 
 -- 8. Employees sharing a last name with a manager of their department.
-SELECT DISTINCT department_employee.emp_no, CONCAT(department_employee.first_name, ' ', department_employee.last_name) full_name
-FROM employees department_employee
-JOIN dept_emp ON dept_emp.emp_no = department_employee.emp_no
-JOIN dept_manager ON dept_manager.dept_no = dept_emp.dept_no
-JOIN employees manager_employee ON manager_employee.emp_no = dept_manager.emp_no
-WHERE department_employee.last_name = manager_employee.last_name AND department_employee.emp_no <> manager_employee.emp_no
-  AND dept_emp.from_date <= dept_manager.to_date AND dept_emp.to_date >= dept_manager.from_date;
+SELECT employees.first_name, employees.last_name
+FROM employees
+JOIN dept_emp ON employees.emp_no = dept_emp.emp_no
+JOIN dept_manager ON dept_emp.dept_no = dept_manager.dept_no
+JOIN employees AS managers ON dept_manager.emp_no = managers.emp_no
+WHERE employees.last_name = managers.last_name;
