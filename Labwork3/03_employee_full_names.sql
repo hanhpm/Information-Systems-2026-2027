@@ -2,4 +2,4 @@
 USE employees;
 
 -- 3. Full names of all employees.
-SELECT CONCAT(first_name, ' ', last_name) AS full_name FROM employees;
+SELECT CONCAT(first_name, ' ', last_name) full_name FROM employees;

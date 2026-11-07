@@ -2,8 +2,8 @@
 USE employees;
 
 -- 5. Employees in Sales.
-SELECT DISTINCT e.emp_no, CONCAT(e.first_name, ' ', e.last_name) AS full_name
-FROM employees AS e
-JOIN dept_emp AS de ON de.emp_no = e.emp_no
-JOIN departments AS d ON d.dept_no = de.dept_no
-WHERE d.dept_name = 'Sales';
+SELECT DISTINCT employees.emp_no, CONCAT(employees.first_name, ' ', employees.last_name) full_name
+FROM employees
+JOIN dept_emp ON dept_emp.emp_no = employees.emp_no
+JOIN departments ON departments.dept_no = dept_emp.dept_no
+WHERE departments.dept_name = 'Sales';
